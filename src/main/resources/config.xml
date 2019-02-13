@@ -1,7 +1,7 @@
 <xml>
-    <jdbc.url>jdbc:mysql://127.0.0.1:3306/demo1?useSSL=true</jdbc.url>
-    <jdbc.username>debian-sys-maint</jdbc.username>
-    <jdbc.password>cDjhZo5Tdul66r8E</jdbc.password>
-    <basePath>/home/hjx/work/myProjectPlus/JdbcPlus/src/test/java</basePath>
+    <jdbc.url>jdbc:mysql://10.17.1.121:3306/almas?autoReconnect=true</jdbc.url>
+    <jdbc.username>user</jdbc.username>
+    <jdbc.password>user</jdbc.password>
+    <basePath>output</basePath>
     <entityPackage>com.hebaibai.jdbcplus.entity</entityPackage>
 </xml>

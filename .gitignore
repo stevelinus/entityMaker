@@ -17,4 +17,5 @@ gradlew.bat
 rebel.xml
 
 ### log
-log/ 
+log/
+output/
