@@ -1,16 +1,20 @@
-*.class
+### Eclipse
+.settings/
+bin/
+.classpath
+.project
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+### IDEA
+.idea/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+### gradle
+.gradle/
+build/
+gradlew
+gradlew.bat
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+### plugins
+rebel.xml
 
-entity-maker\.iml
-
-target/
+### log
+log/ 
