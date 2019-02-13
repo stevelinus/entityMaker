@@ -1,14 +1,5 @@
 package com.hebaibai.entitymaker;
 
-import com.hebaibai.entitymaker.model.EntityModel;
-import com.hebaibai.entitymaker.util.*;
-import com.mysql.jdbc.Connection;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +8,21 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import com.hebaibai.entitymaker.model.EntityModel;
+import com.hebaibai.entitymaker.util.FileUtils;
+import com.hebaibai.entitymaker.util.FreeMarkerUtils;
+import com.hebaibai.entitymaker.util.NameConvert;
+import com.hebaibai.entitymaker.util.SqlUtils;
+import com.hebaibai.entitymaker.util.XmlUtils;
+import com.mysql.jdbc.Connection;
 
 /**
  * 数据库表生成entity工具
@@ -57,18 +63,18 @@ public class EntityMaker {
      *
      * @param imports 需要导入的特殊的class
      */
-    public void maker(Class... imports) {
+    public void maker(Class<?>... imports) {
         List<String> tableNames = showTables();
         for (String tableName : tableNames) {
             String createTableSql = getCreateTableSql(tableName);
             EntityModel entityModel = makeModelBySql(createTableSql);
-            for (Class importClass : imports) {
+            for (Class<?> importClass : imports) {
                 entityModel.addImport(importClass);
             }
             boolean b = makeOneClass(entityModel);
             System.out.printf("创建class：%-20s %-20s  %s \n", entityModel.getClassDoc(), tableName, b);
-            Map<String, Class> fields = entityModel.getFields();
-            for (Map.Entry<String, Class> entry : fields.entrySet()) {
+            Map<String, Class<?>> fields = entityModel.getFields();
+            for (Map.Entry<String, Class<?>> entry : fields.entrySet()) {
                 System.out.printf("         字段：%-20s  %s \n", entry.getKey(), entry.getValue().getSimpleName());
             }
         }

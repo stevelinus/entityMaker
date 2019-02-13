@@ -1,6 +1,10 @@
 package com.hebaibai.entitymaker.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用于生成java Entity文件的类
@@ -10,7 +14,7 @@ public class ClassModel {
     /**
      * java 中不需要引包的类型
      */
-    private static List<Class> baseClass = Arrays.asList(
+    private static List<Class<?>> baseClass = Arrays.asList(
             int.class,
             double.class,
             float.class,
@@ -41,7 +45,7 @@ public class ClassModel {
      * K:属性名称
      * V:属性类型
      */
-    private Map<String, Class> fields = new HashMap<>();
+    private Map<String, Class<?>> fields = new HashMap<>();
 
     /**
      * 属性的注释
@@ -49,14 +53,14 @@ public class ClassModel {
     private Map<String, String> fieldDoc = new HashMap<>();
     ;
 
-    private List<Class> imports = new ArrayList<>();
+    private List<Class<?>> imports = new ArrayList<>();
 
     /**
      * 添加需要导入的包
      *
      * @param importClass
      */
-    public void addImport(Class importClass) {
+    public void addImport(Class<?> importClass) {
         if (baseClass.indexOf(importClass) != -1) {
             return;
         }
@@ -71,7 +75,7 @@ public class ClassModel {
      * @param fieldName  属性名称
      * @param fieldClass 属性类型
      */
-    public void addfield(String fieldName, Class fieldClass) {
+    public void addfield(String fieldName, Class<?> fieldClass) {
         if (!fields.containsKey(fieldName)) {
             fields.put(fieldName, fieldClass);
         }
@@ -89,11 +93,11 @@ public class ClassModel {
         }
     }
 
-    public List<Class> getImports() {
+    public List<Class<?>> getImports() {
         return imports;
     }
 
-    public void setImports(List<Class> imports) {
+    public void setImports(List<Class<?>> imports) {
         this.imports = imports;
     }
 
@@ -121,11 +125,11 @@ public class ClassModel {
         this.packageName = packageName;
     }
 
-    public Map<String, Class> getFields() {
+    public Map<String, Class<?>> getFields() {
         return fields;
     }
 
-    public void setFields(Map<String, Class> fields) {
+    public void setFields(Map<String, Class<?>> fields) {
         this.fields = fields;
     }
 
